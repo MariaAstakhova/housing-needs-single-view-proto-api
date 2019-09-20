@@ -1,0 +1,9 @@
+{
+  "name": "single-view-api-proto",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {}
+}
