@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const port = 3010
 const QueryHandler = require('./lib/QueryHandler');
+const cors = require('cors');
+
+app.use(cors())
 
 app.get('/customers', (req, res) => {
 
