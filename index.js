@@ -7,7 +7,6 @@ const cors = require('cors');
 app.use(cors())
 
 app.get('/customers', (req, res) => {
-
   // Select which systems we want to query
   let systems = ['SingleView', 'UHT', 'Jigsaw', 'Academy']
   if(req.query.systems){
