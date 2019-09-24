@@ -4,6 +4,7 @@ CREATE TABLE customers (
   last_name   VARCHAR(50) NOT NULL,
   address     VARCHAR(200),
   nino        VARCHAR(11), 
+  dob         TIMESTAMP,
   created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
