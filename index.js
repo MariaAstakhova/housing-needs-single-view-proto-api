@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 function extractSystems(incoming){
-  let systems = ['SingleView', 'UHT', 'Jigsaw', 'Academy']
+  let systems = ['SINGLEVIEW', 'UHT', 'UHW', 'JIGSAW']
   if(incoming.query.systems){
     systems = incoming.query.systems.split(',');
   }
