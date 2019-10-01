@@ -39,7 +39,10 @@ app.get('/customers/:id', (req, res) => {
 })
 
 app.get('/customers/:id/notes', (req, res) => {
-
+  let systems = extractSystems(req);
+  QueryHandler.fetchCustomerNotes(req.params.id, systems, (resp) => {
+    res.send(resp)
+  });
 })
 
 app.get('/customers/:id/documents', (req, res) => {
