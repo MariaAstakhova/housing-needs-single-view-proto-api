@@ -11,7 +11,7 @@ CREATE TABLE customers (
 
 CREATE TABLE systems (
   id INTEGER PRIMARY KEY,
-  name VARCHAR(10) NOT NULL, 
+  name VARCHAR(32) NOT NULL, 
   created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -31,7 +31,8 @@ CREATE TABLE customer_links (
     ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
-INSERT INTO systems (name) VALUES ('UHT');
+INSERT INTO systems (name) VALUES ('UHT-Contacts');
+INSERT INTO systems (name) VALUES ('UHT-HousingRegister');
 INSERT INTO systems (name) VALUES ('UHW');
 INSERT INTO systems (name) VALUES ('JIGSAW');
 INSERT INTO systems (name) VALUES ('ACADEMY');
