@@ -1,5 +1,5 @@
 CREATE TABLE customers (
-  id          INTEGER PRIMARY KEY,
+  id          SERIAL PRIMARY KEY,
   first_name  VARCHAR(30) NOT NULL,
   last_name   VARCHAR(50) NOT NULL,
   address     VARCHAR(200),
@@ -10,14 +10,14 @@ CREATE TABLE customers (
 );
 
 CREATE TABLE systems (
-  id INTEGER PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   name VARCHAR(32) NOT NULL, 
   created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE customer_links (
-  id          INTEGER PRIMARY KEY,
+  id          SERIAL PRIMARY KEY,
   customer_id INTEGER NOT NULL,
   system_id   INTEGER NOT NULL,
   remote_id   VARCHAR(30) NOT NULL,
