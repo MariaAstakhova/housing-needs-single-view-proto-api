@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "better-sqlite3": "^5.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsdom": "^15.1.1",
+    "moment": "^2.24.0",
     "mssql": "^5.1.0",
+    "pg-promise": "^9.3.3",
     "request": "^2.88.0",
     "strftime": "^0.10.0"
   },
