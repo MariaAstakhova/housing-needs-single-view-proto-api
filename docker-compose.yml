@@ -6,6 +6,8 @@ services:
     build: "."
     ports:
       - "3010:3010"
+    volumes:
+      - .:/usr/src/app
   db:
     image: postgres
     ports:
