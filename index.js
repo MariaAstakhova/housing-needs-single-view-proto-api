@@ -1,6 +1,7 @@
 require("dotenv").config();
-const app = express()
-const port = 3010
+const express = require('express');
+const app = express();
+const port = 3010;
 const QueryHandler = require('./lib/QueryHandler');
 const cors = require('cors');
 
