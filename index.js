@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const port = 3010;
 const QueryHandler = require("./lib/QueryHandler");
+const { Systems } = require("./lib/Constants");
 const cors = require("cors");
 
 app.use(cors());
@@ -11,18 +12,29 @@ app.use(express.json());
 // maybe put this in a route so front end can get systems from api
 function extractSystems(incoming) {
   let systems = [
-    "SINGLEVIEW",
-    "UHT-Contacts",
-    "UHT-HousingRegister",
-    "UHW",
-    "JIGSAW",
-    "ACADEMY"
+    Systems.SINGLEVIEW,
+    Systems.UHT_CONTACTS,
+    Systems.UHT_HOUSING_REGISTER,
+    Systems.UHW,
+    Systems.JIGSAW,
+    Systems.ACADEMY
   ];
   if (incoming.query.systems) {
     systems = incoming.query.systems.split(",");
   }
   return systems;
 }
+
+app.get("/systems", async (req, res) => {
+  res.json([
+    Systems.SINGLEVIEW,
+    Systems.UHT_CONTACTS,
+    Systems.UHT_HOUSING_REGISTER,
+    Systems.UHW,
+    Systems.JIGSAW,
+    Systems.ACADEMY
+  ]);
+});
 
 app.get("/customers", async (req, res) => {
   // Select which systems we want to query
