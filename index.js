@@ -8,6 +8,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
+// maybe put this in a route so front end can get systems from api
 function extractSystems(incoming) {
   let systems = [
     "SINGLEVIEW",
@@ -23,41 +24,38 @@ function extractSystems(incoming) {
   return systems;
 }
 
-app.get("/customers", (req, res) => {
+app.get("/customers", async (req, res) => {
   // Select which systems we want to query
-  let systems = extractSystems(req);
-
-  QueryHandler.searchCustomers(req.query, systems, results => {
-    res.send(results);
-  });
+  const systems = extractSystems(req);
+  const results = await QueryHandler.searchCustomers(req.query, systems);
+  res.send(results);
 });
 
-app.post("/customers", (req, res) => {
+app.post("/customers", async (req, res) => {
   // Save the selected customer records
-  QueryHandler.saveCustomer(req.body, id => {
-    res.redirect(`/customers/${id}`);
-  });
+  const id = await QueryHandler.saveCustomer(req.body);
+  res.redirect(`/customers/${id}`);
 });
 
-app.get("/customers/:id", (req, res) => {
-  let systems = extractSystems(req);
-  QueryHandler.fetchCustomer(req.params.id, systems, resp => {
-    res.send({ customer: resp });
-  });
+app.get("/customers/:id", async (req, res) => {
+  const systems = extractSystems(req);
+  const result = await QueryHandler.fetchCustomer(req.params.id, systems);
+  res.send({ customer: result });
 });
 
-app.get("/customers/:id/notes", (req, res) => {
-  let systems = extractSystems(req);
-  QueryHandler.fetchCustomerNotes(req.params.id, systems, resp => {
-    res.send(resp);
-  });
+app.get("/customers/:id/notes", async (req, res) => {
+  const systems = extractSystems(req);
+  const results = await QueryHandler.fetchCustomerNotes(req.params.id, systems);
+  res.send(results);
 });
 
-app.get("/customers/:id/documents", (req, res) => {
-  let systems = extractSystems(req);
-  QueryHandler.fetchCustomerDocuments(req.params.id, systems, resp => {
-    res.send(resp);
-  });
+app.get("/customers/:id/documents", async (req, res) => {
+  const systems = extractSystems(req);
+  const results = await QueryHandler.fetchCustomerDocuments(
+    req.params.id,
+    systems
+  );
+  res.send(results);
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
