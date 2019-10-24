@@ -4,6 +4,9 @@ services:
     depends_on:
       - db
     build: "."
+    environment:
+      - SINGLEVIEW_HOST=db
+      - SINGLEVIEW_PORT=5432
     ports:
       - "3010:3010"
     volumes:
