@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const host = "0.0.0.0";
 const port = 3000;
 const QueryHandler = require("./lib/QueryHandler");
 const { Systems } = require("./lib/Constants");
@@ -70,4 +71,4 @@ app.get("/customers/:id/documents", async (req, res) => {
   res.send(results);
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}!`));
+app.listen(port, host, () => console.log(`Listening on ${host}:${port}!`));
