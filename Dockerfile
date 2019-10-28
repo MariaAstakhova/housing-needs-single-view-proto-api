@@ -14,6 +14,6 @@ RUN npm install && npm ci --only=production
 COPY . .
 
 # Bind app port
-EXPOSE 3010
+EXPOSE 3000
 
 CMD [ "node", "index.js" ]

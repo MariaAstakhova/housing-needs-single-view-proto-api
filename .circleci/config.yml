@@ -1,8 +1,20 @@
-version: 2
-jobs:
-  build:
-    machine: true # Use a Linux VM instead of docker environment
-    working_directory: ~/repo # Default working directory, where your project will be cloned
-    steps:
-      - checkout
-      - run: docker-compose up -d
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@0.0.2
+  aws-ecs: circleci/aws-ecs@0.0.8
+workflows:
+  build-and-deploy:
+    jobs:
+      - aws-ecr/build_and_push_image:
+          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+          repo: "hackney/apps/${AWS_SERVICE_PREFIX}"
+          region: ${AWS_DEFAULT_REGION}
+          tag: "latest"
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build_and_push_image
+          aws-region: ${AWS_DEFAULT_REGION}
+          family: "task-${AWS_SERVICE_PREFIX}-${ENVIRONMENT}"
+          cluster-name: "${AWS_CLUSTER_NAME}"
+          service-name: "${AWS_SERVICE_PREFIX}-${ENVIRONMENT}"
+          container-image-name-updates: "container=${AWS_SERVICE_PREFIX}-${ENVIRONMENT},tag=latest"
