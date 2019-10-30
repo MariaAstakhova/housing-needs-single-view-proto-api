@@ -1,7 +1,5 @@
 node_modules
 secrets*
-.env
+.env*
 *.db
 .vscode
-
-.env_copy
