@@ -35,5 +35,6 @@ INSERT INTO systems (name) VALUES ('UHT-Contacts');
 INSERT INTO systems (name) VALUES ('UHT-HousingRegister');
 INSERT INTO systems (name) VALUES ('UHW');
 INSERT INTO systems (name) VALUES ('JIGSAW');
-INSERT INTO systems (name) VALUES ('ACADEMY');
+INSERT INTO systems (name) VALUES ('ACADEMY-Benefits');
+INSERT INTO systems (name) VALUES ('ACADEMY-CouncilTax');
 INSERT INTO systems (name) VALUES ('COMINO');
