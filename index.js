@@ -4,7 +4,6 @@ const app = express();
 const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
 const QueryHandler = require('./lib/QueryHandler');
-const { Systems } = require('./lib/Constants');
 const cors = require('cors');
 
 app.use(cors());
