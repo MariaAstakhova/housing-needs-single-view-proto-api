@@ -12,8 +12,7 @@
     "mssql": "^5.1.0",
     "pg-promise": "^9.3.3",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4",
-    "strftime": "^0.10.0"
+    "request-promise": "^4.2.4"
   },
   "scripts": {
     "lint": "eslint --fix --ext js lib && echo 'Lint complete.'",
