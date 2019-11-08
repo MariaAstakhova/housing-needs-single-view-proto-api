@@ -38,7 +38,7 @@ app.get('/customers', async (req, res) => {
 app.post('/customers', async (req, res) => {
   // Save the selected customer records
   const id = await QueryHandler.saveCustomer(req.body);
-  res.redirect(req.baseUrl + `/customers/${id}`);
+  res.redirect(`${process.env.API_PATH_PREFIX}/customers/${id}`);
 });
 
 app.get('/customers/:id', async (req, res) => {
