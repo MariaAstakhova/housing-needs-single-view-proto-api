@@ -50,6 +50,11 @@ app.get('/customers/:id', async (req, res) => {
   res.send({ customer: result });
 });
 
+app.get('/customers/:id/links', async (req, res) => {
+  const result = await QueryHandler.fetchCustomerLinks(req.params.id);
+  res.send({ links: result });
+});
+
 app.get('/customers/:id/notes', async (req, res) => {
   const results = await QueryHandler.fetchCustomerNotes(req.params.id);
   res.send(results);
