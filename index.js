@@ -31,13 +31,24 @@ if (process.env.ENABLE_CACHING === 'true') {
 }
 
 app.get('/customers', async (req, res) => {
+  const q = Object.entries(req.query)
+    .map(([k, v]) => {
+      return `${k}:${v}`;
+    })
+    .join(',');
+  console.log(`CUSTOMER SEARCH "${q}"`);
+  console.time(`CUSTOMER SEARCH "${q}"`);
   const results = await QueryHandler.searchCustomers(req.query);
+  console.timeEnd(`CUSTOMER SEARCH "${q}"`);
   res.send(results);
 });
 
 app.post('/customers', async (req, res) => {
+  console.log('SAVING CUSTOMER');
+  console.time('SAVING CUSTOMER');
   // Save the selected customer records
   const id = await QueryHandler.saveCustomer(req.body);
+  console.timeEnd('SAVING CUSTOMER');
   res.send({
     customer: {
       id: id
@@ -46,22 +57,34 @@ app.post('/customers', async (req, res) => {
 });
 
 app.get('/customers/:id', async (req, res) => {
+  console.log(`GET CUSTOMER id="${req.params.id}"`);
+  console.time(`GET CUSTOMER id="${req.params.id}"`);
   const result = await QueryHandler.fetchCustomer(req.params.id);
+  console.timeEnd(`GET CUSTOMER id="${req.params.id}"`);
   res.send({ customer: result });
 });
 
 app.get('/customers/:id/links', async (req, res) => {
+  console.log(`GET CUSTOMER LINKS id="${req.params.id}"`);
+  console.time(`GET CUSTOMER LINKS id="${req.params.id}"`);
   const result = await QueryHandler.fetchCustomerLinks(req.params.id);
+  console.timeEnd(`GET CUSTOMER LINKS id="${req.params.id}"`);
   res.send({ links: result });
 });
 
 app.get('/customers/:id/notes', async (req, res) => {
+  console.log(`GET CUSTOMER NOTES id="${req.params.id}"`);
+  console.time(`GET CUSTOMER NOTES id="${req.params.id}"`);
   const results = await QueryHandler.fetchCustomerNotes(req.params.id);
+  console.timeEnd(`GET CUSTOMER NOTES id="${req.params.id}"`);
   res.send(results);
 });
 
 app.get('/customers/:id/documents', async (req, res) => {
+  console.log(`GET CUSTOMER DOCS id="${req.params.id}"`);
+  console.time(`GET CUSTOMER DOCS id="${req.params.id}"`);
   const results = await QueryHandler.fetchCustomerDocuments(req.params.id);
+  console.timeEnd(`GET CUSTOMER DOCS id="${req.params.id}"`);
   res.send(results);
 });
 
