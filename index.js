@@ -57,19 +57,19 @@ app.post('/customers', async (req, res) => {
 });
 
 app.get('/customers/:id', async (req, res) => {
-  console.log(`GET CUSTOMER id="${req.params.id}"`);
-  console.time(`GET CUSTOMER id="${req.params.id}"`);
+  console.log(`GET CUSTOMER LINKS id="${req.params.id}"`);
+  console.time(`GET CUSTOMER LINKS id="${req.params.id}"`);
   const result = await QueryHandler.fetchCustomer(req.params.id);
-  console.timeEnd(`GET CUSTOMER id="${req.params.id}"`);
+  console.timeEnd(`GET CUSTOMER LINKS id="${req.params.id}"`);
   res.send({ customer: result });
 });
 
-app.get('/customers/:id/links', async (req, res) => {
-  console.log(`GET CUSTOMER LINKS id="${req.params.id}"`);
-  console.time(`GET CUSTOMER LINKS id="${req.params.id}"`);
-  const result = await QueryHandler.fetchCustomerLinks(req.params.id);
-  console.timeEnd(`GET CUSTOMER LINKS id="${req.params.id}"`);
-  res.send({ links: result });
+app.get('/customers/:id/record', async (req, res) => {
+  console.log(`GET CUSTOMER id="${req.params.id}"`);
+  console.time(`GET CUSTOMER id="${req.params.id}"`);
+  const result = await QueryHandler.fetchCustomerRecord(req.params.id);
+  console.timeEnd(`GET CUSTOMER id="${req.params.id}"`);
+  res.send({ customer: result });
 });
 
 app.get('/customers/:id/notes', async (req, res) => {
