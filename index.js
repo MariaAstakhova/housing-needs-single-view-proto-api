@@ -64,6 +64,14 @@ app.get('/customers/:id', async (req, res) => {
   res.send({ customer: result });
 });
 
+app.delete('/customers/:id', async (req, res) => {
+  console.log(`DELETE CUSTOMER id="${req.params.id}"`);
+  console.time(`DELETE CUSTOMER id="${req.params.id}"`);
+  await QueryHandler.deleteCustomer(req.params.id);
+  console.timeEnd(`DELETE CUSTOMER id="${req.params.id}"`);
+  res.sendStatus(200);
+});
+
 app.get('/customers/:id/record', async (req, res) => {
   console.log(`GET CUSTOMER id="${req.params.id}"`);
   console.time(`GET CUSTOMER id="${req.params.id}"`);
