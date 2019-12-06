@@ -38,9 +38,14 @@ app.get('/customers', async (req, res) => {
     .join(',');
   console.log(`CUSTOMER SEARCH "${q}"`);
   console.time(`CUSTOMER SEARCH "${q}"`);
-  const results = await QueryHandler.searchCustomers(req.query);
+  try {
+    const results = await QueryHandler.searchCustomers(req.query);
+    res.send(results);
+  } catch (err) {
+    console.log(err);
+    res.send(500);
+  }
   console.timeEnd(`CUSTOMER SEARCH "${q}"`);
-  res.send(results);
 });
 
 app.post('/customers', async (req, res) => {
