@@ -30,6 +30,11 @@ if (process.env.ENABLE_CACHING === 'true') {
   cacheMiddleware.attach(app);
 }
 
+app.use(function(req, res, next) {
+  res.locals.hackneyToken = req.headers.authorization.replace('Bearer ', '');
+  next();
+});
+
 app.get('/customers', async (req, res) => {
   const q = Object.entries(req.query)
     .map(([k, v]) => {
@@ -88,7 +93,10 @@ app.get('/customers/:id/record', async (req, res) => {
 app.get('/customers/:id/notes', async (req, res) => {
   console.log(`GET CUSTOMER NOTES id="${req.params.id}"`);
   console.time(`GET CUSTOMER NOTES id="${req.params.id}"`);
-  const results = await QueryHandler.fetchCustomerNotes(req.params.id);
+  const results = await QueryHandler.fetchCustomerNotes(
+    req.params.id,
+    res.locals.hackneyToken
+  );
   console.timeEnd(`GET CUSTOMER NOTES id="${req.params.id}"`);
   res.send(results);
 });
