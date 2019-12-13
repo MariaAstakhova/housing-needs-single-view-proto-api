@@ -29,3 +29,4 @@ WHERE
 			FROM ctoccupation
 		WHERE
 			ctoccupation.account_ref = ctaccount.account_ref)
+	AND lead_liab_name LIKE @full_name
