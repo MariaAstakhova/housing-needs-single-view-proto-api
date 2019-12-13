@@ -1,5 +1,6 @@
 SELECT
-  hbmember.claim_id,
+  hbclaim.claim_id,
+  hbclaim.check_digit,
   hbmember.person_ref,
 	hbmember.forename,
 	hbmember.surname,
@@ -12,6 +13,7 @@ SELECT
 	hbhousehold.post_code
 FROM
 	hbmember
+	JOIN hbclaim ON hbclaim.claim_id = hbmember.claim_id
 	LEFT JOIN hbhousehold ON hbmember.claim_id = hbhousehold.claim_id
 		AND hbmember.house_id = hbhousehold.house_id
 WHERE

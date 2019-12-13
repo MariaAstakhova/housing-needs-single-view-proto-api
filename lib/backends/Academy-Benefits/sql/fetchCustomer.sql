@@ -1,5 +1,6 @@
 SELECT
-  hbmember.claim_id,
+  hbclaim.claim_id,
+  hbclaim.check_digit,
   hbmember.title,
 	hbmember.forename,
 	hbmember.surname,
