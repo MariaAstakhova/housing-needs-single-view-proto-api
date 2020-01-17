@@ -31,7 +31,9 @@ if (process.env.ENABLE_CACHING === 'true') {
 }
 
 app.use(function(req, res, next) {
-  res.locals.hackneyToken = req.headers.authorization.replace('Bearer ', '');
+  if (req.headers.authorization) {
+    res.locals.hackneyToken = req.headers.authorization.replace('Bearer ', '');
+  }
   next();
 });
 
